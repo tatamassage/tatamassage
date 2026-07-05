@@ -14,7 +14,7 @@
     --text-dark: #1F2223;
     --text-muted: #5F6466;
     --accent-gold: #C5A880; /* Мягкое золото */
-    --border-color: rgba(197, 168, 128, 0.2);
+    --border-color: rgba(197, 168, 128, 0.25);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Montserrat', sans-serif;
@@ -154,7 +154,8 @@ header {
 .hero {
     padding: 180px 0 160px 0;
     text-align: center;
-    background-image: linear-gradient(rgba(250, 248, 245, 0.88), rgba(250, 248, 245, 0.88)), 
+    /* Ослабили белое перекрытие до минимума */
+    background-image: linear-gradient(rgba(250, 248, 245, 0.08), rgba(250, 248, 245, 0.08)), 
                       url('images/hero-bg-spa.webp');
     background-size: cover;
     background-position: center;
@@ -162,39 +163,54 @@ header {
 }
 
 .hero-title {
-    font-size: 46px;
+    font-size: 44px;
     line-height: 1.2;
     margin-bottom: 25px;
     letter-spacing: 1px;
+    color: var(--text-dark);
+    /* Мягкие тени для отличной читаемости текста на светлом фоне */
+    text-shadow: 0 4px 15px rgba(250, 248, 245, 0.95), 0 2px 5px rgba(250, 248, 245, 0.95);
 }
 
 .hero-subtitle {
     font-size: 18px;
-    color: var(--text-muted);
+    color: var(--text-dark);
     max-width: 720px;
     margin: 0 auto 45px auto;
-    font-weight: 400;
+    font-weight: 500;
+    text-shadow: 0 3px 10px rgba(250, 248, 245, 0.95);
 }
 
-.btn {
-    display: inline-block;
-    background-color: var(--primary-teal);
-    color: #fff;
-    padding: 16px 38px;
-    font-size: 13px;
+/* Стилизованная кнопка Telegram */
+.telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #2AABEE, #229ED9);
+    color: #fff !important;
+    padding: 16px 36px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     border-radius: 50px;
-    border: 1px solid var(--primary-teal);
-    box-shadow: 0 4px 15px rgba(36, 181, 197, 0.25);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(34, 158, 217, 0.35);
+    transition: var(--transition);
 }
 
-.btn:hover {
-    background-color: transparent;
-    color: var(--primary-teal);
-    box-shadow: 0 4px 15px rgba(36, 181, 197, 0.1);
+.telegram-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(34, 158, 217, 0.5);
+    background: linear-gradient(135deg, #229ED9, #1E94C7);
+}
+
+.tg-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
 }
 
 /* Секция: Общие стили */
@@ -318,7 +334,7 @@ header {
     transform: scale(1.04);
 }
 
-/* Цены */
+/* Цены - Переделаны в таблицы колонок как в исходнике */
 .prices {
     background-color: #F1ECE6;
 }
@@ -331,65 +347,84 @@ header {
 
 .price-category {
     background-color: var(--card-bg);
-    padding: 45px 35px;
+    padding: 40px 25px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
 
-.price-category h3 {
-    font-size: 24px;
-    margin-bottom: 35px;
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table th {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 600;
     color: var(--primary-teal);
-    border-bottom: 1px solid rgba(36, 181, 197, 0.15);
-    padding-bottom: 12px;
-    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(36, 181, 197, 0.2);
 }
 
-.price-list {
-    list-style: none;
+.price-table th:first-child {
+    text-align: left;
+    width: 55%;
 }
 
-.price-item {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-    border-bottom: 1px dashed rgba(0,0,0,0.07);
+.price-table th:nth-child(2) {
+    text-align: right;
+    width: 20%;
+    font-size: 14px;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-muted);
 }
 
-.price-item:last-child {
+.price-table th:nth-child(3) {
+    text-align: right;
+    font-size: 14px;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent-gold);
+}
+
+.price-table td {
+    padding: 18px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.price-table tr:last-child td {
     border-bottom: none;
-}
-
-.price-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
 }
 
 .price-name {
     font-size: 15px;
-    color: var(--text-dark);
     font-weight: 600;
-}
-
-.price-value {
-    font-size: 16px;
     color: var(--text-dark);
-    font-weight: 700;
-    margin-left: 10px;
 }
 
-.price-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
+.price-time {
+    display: block;
+    font-size: 12px;
     color: var(--text-muted);
-    margin-top: 5px;
+    font-weight: 400;
+    margin-top: 3px;
 }
 
-.price-discount {
+.val {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: right;
+}
+
+.val-discount {
+    font-size: 16px;
+    font-weight: 700;
     color: var(--primary-teal);
-    font-weight: 600;
+    text-align: right;
 }
 
 .price-cta {
@@ -429,10 +464,6 @@ header {
     line-height: 1.7;
 }
 
-.gift-btn {
-    margin-top: 15px;
-}
-
 .gift-img img {
     border-radius: 15px;
     width: 100%;
@@ -440,46 +471,119 @@ header {
     object-fit: cover;
 }
 
-/* Отзывы */
+/* Отзывы - Оформлены в виде интерактивной карусели */
 .reviews-section {
     background-color: #F1ECE6;
 }
 
-.review-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.carousel-container {
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.review-slide {
+    flex: 0 0 100%;
+    padding: 10px;
 }
 
 .review-card {
     background-color: var(--card-bg);
-    padding: 35px;
+    padding: 45px 35px;
     border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.01);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.02);
     border: 1px solid var(--border-color);
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
 }
 
 .review-stars {
     color: var(--accent-gold);
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .review-text {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-muted);
     font-style: italic;
     margin-bottom: 25px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .review-tag {
     font-size: 14px;
     font-weight: 600;
     color: var(--primary-teal);
+}
+
+.carousel-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 10;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-teal);
+    color: #fff;
+    border-color: var(--primary-teal);
+}
+
+.carousel-btn.prev {
+    left: -25px;
+}
+
+.carousel-btn.next {
+    right: -25px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(36, 181, 197, 0.2);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background-color: var(--primary-teal);
+    width: 24px;
+    border-radius: 10px;
 }
 
 /* FAQ (Аккордеон) */
@@ -490,8 +594,8 @@ header {
 
 .faq-item {
     background-color: var(--card-bg);
-    margin-bottom: 15px;
     border-radius: 12px;
+    margin-bottom: 15px;
     border: 1px solid var(--border-color);
     overflow: hidden;
     transition: var(--transition);
@@ -499,25 +603,26 @@ header {
 
 .faq-question {
     width: 100%;
-    text-align: left;
-    padding: 22px 30px;
-    background: transparent;
+    background: none;
     border: none;
-    font-family: var(--font-sans);
+    text-align: left;
+    padding: 20px 25px;
     font-size: 16px;
     font-weight: 600;
     color: var(--text-dark);
+    font-family: var(--font-sans);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: var(--transition);
 }
 
 .faq-question::after {
     content: '+';
     font-size: 22px;
     color: var(--primary-teal);
-    font-weight: 400;
+    font-weight: 300;
     transition: var(--transition);
 }
 
@@ -525,9 +630,13 @@ header {
     border-color: var(--primary-teal);
 }
 
+.faq-item.active .faq-question {
+    color: var(--primary-teal);
+}
+
 .faq-item.active .faq-question::after {
-    transform: rotate(45deg);
-    color: var(--text-dark);
+    content: '−';
+    transform: rotate(180deg);
 }
 
 .faq-answer {
@@ -602,18 +711,21 @@ header {
 
 .social-links-grid {
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 15px;
     flex-wrap: wrap;
 }
 
 .social-link-item {
     background-color: var(--card-bg);
-    padding: 8px 18px;
-    border-radius: 20px;
+    padding: 10px 22px;
+    border-radius: 30px;
     font-size: 13px;
     font-weight: 600;
     border: 1px solid var(--border-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .social-link-item:hover {
@@ -621,18 +733,14 @@ header {
     color: var(--primary-teal);
 }
 
+.soc-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
 .social-buttons {
     margin-top: 15px;
-}
-
-.btn-telegram {
-    background-color: #2CA5E0;
-    border-color: #2CA5E0;
-}
-
-.btn-telegram:hover {
-    background-color: transparent;
-    color: #2CA5E0;
 }
 
 .map-container {
@@ -744,7 +852,6 @@ footer {
         gap: 20px;
     }
 
-    /* Анимация кнопки меню */
     .menu-toggle.active span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -760,5 +867,13 @@ footer {
     }
     .section-title {
         font-size: 28px;
+    }
+    
+    .carousel-btn.prev {
+        left: -10px;
+    }
+
+    .carousel-btn.next {
+        right: -10px;
     }
 }
