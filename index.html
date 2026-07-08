@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     
-    <!-- 1. Оптимизация DNS-запросов к внешним серверам Google -->
+    <!-- Оптимизация DNS-запросов к внешним серверам Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <!-- 2. Предварительная загрузка LCP-изображения (фонового баннера) -->
-    <!-- Это заставляет браузер скачивать фон первого экрана мгновенно, сокращая LCP на 1-2 секунды! -->
+    <!-- Предварительная загрузка LCP-изображения (фонового баннера) -->
     <link rel="preload" as="image" href="images/hero-bg-spa.webp" type="image/webp">
+
+    <!-- Асинхронная неблокирующая загрузка основного файла стилей (style.css) -->
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
 
     <!-- Google Tag Manager (сохранен без изменений) -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -26,19 +29,15 @@
     <meta name="description" content="Шукаєте професійний масаж у Гатному? Затишний кабінет TATA MASSAGE в ЖК Family. Класичний, антицелюлітний, дитячий масаж та ліфтинг обличчя гуаша. Запишіться на сеанс відновлення сил.">
     <meta name="keywords" content="tata massage, масаж гатне, масажист гатне, масаж жк family гатне, антицелюлітний масаж гатне, класичний масаж гатне, масаж спини гатне, дитячий масаж гатне, масаж обличчя гуаша гатне">
     
-    <!-- Подключение Favicon -->
+    <!-- Подключение Favicon (адаптивный SVG) -->
     <link rel="icon" type="image/svg+xml" href="images/logo-tata-massages.svg">
 
-    <!-- 3. Неблокирующая (асинхронная) загрузка шрифтов Montserrat -->
-    <!-- Избавляет от предупреждения PageSpeed "Устраните ресурсы, блокирующие отображение" -->
+    <!-- Неблокирующая загрузка шрифтов Montserrat -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
     </noscript>
-
-    <!-- Подключение внешнего файла стилей -->
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -79,7 +78,6 @@
         <!-- Строка 2: Меню и логотип -->
         <div class="container header-container">
             <div class="logo-block">
-                <!-- Прописана ширина/высота для предотвращения CLS -->
                 <img src="images/logo-tata-massages.svg" alt="Логотип TATA MASSAGE у вигляді лотоса" class="logo-img" width="44" height="44">
                 <a href="#" class="logo-text">TATA<span> MASSAGE</span></a>
             </div>
@@ -119,7 +117,6 @@
                 <h2 class="section-title">Про майстра та кабінет</h2>
                 <div class="about-grid">
                     <div class="about-img-block">
-                        <!-- Добавлены атрибуты размеров для устранения CLS -->
                         <img src="images/masazhist-tetiana-gatne.webp" alt="Сертифікований майстер масажу Тетяна у своєму кабінеті в Гатному" width="480" height="480">
                     </div>
                     <div class="about-text">
@@ -147,7 +144,7 @@
                     </div>
                 </div>
 
-                <!-- Галерея процессов (Добавлены размеры картинок) -->
+                <!-- Галерея процессов -->
                 <div class="gallery-title-wrapper">
                     <h3 class="gallery-subheading">Процес масажу та деталі</h3>
                 </div>
@@ -312,7 +309,6 @@
                         <a href="https://t.me/+380671099469" target="_blank" class="telegram-btn cert-btn">Придбати сертифікат</a>
                     </div>
                     <div class="gift-img">
-                        <!-- Добавлены геометрические размеры картинки -->
                         <img src="images/podarunkovi-sertyfikaty-masazh.webp" alt="Подарункові сертифікати на масаж у крафтових конвертах з бантом" width="450" height="300" loading="lazy">
                     </div>
                 </div>
@@ -417,7 +413,7 @@
                     <div class="faq-item">
                         <button class="faq-question">Що потрібно мати із собою на сеансі?</button>
                         <div class="faq-answer">
-                            <p>Нічого брати з собою не потрібно. У кабінеті є все необхідне для вашого комфорту: чисті одноразові простирадла, гіпоалергенні професійні олії, м'які рушники та затишна атмосфера.</p>
+                            <p>Нічого брати з собою не нужно. У кабінеті є все необхідне для вашого комфорту: чисті одноразові простирадла, гіпоалергенні професійні олії, м'які рушники та затишна атмосфера.</p>
                         </div>
                     </div>
 
@@ -493,17 +489,11 @@
 
                     <!-- Интерактивная карта Google -->
                     <div class="map-wrapper">
-                        <div class="map-container">
-                            <!-- Карта теперь подгружается лениво через iframe с жесткими пропорциями -->
-                            <iframe 
-                                src="https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                                width="100%" 
-                                height="100%" 
-                                style="border:0; min-height: 350px;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
+                        <!-- Контейнер для динамического ленивого рендеринга карты из script.js -->
+                        <div class="map-container" id="mapContainer">
+                            <div class="map-loader" style="display: flex; align-items: center; justify-content: center; height: 350px; background: #EAF2F4; color: var(--text-muted); font-size: 14px;">
+                                Завантаження інтерактивної карти...
+                            </div>
                         </div>
                     </div>
 
@@ -517,7 +507,6 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <div class="logo-block">
-                    <!-- Заданы пропорции логотипа -->
                     <img src="images/logo-tata-massages.svg" alt="Логотип TATA MASSAGE" class="logo-img" width="44" height="44" loading="lazy">
                     <span class="logo-text">TATA<span> MASSAGE</span></span>
                 </div>

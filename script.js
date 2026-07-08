@@ -146,4 +146,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+
+
+    // --- 5. Ультра-оптимизация: Ленивая подгрузка Google Карт через IntersectionObserver ---
+    // Это исключает скачивание тяжелых скриптов карт до тех пор, пока пользователь не доскроллит до контактов [1].
+    const mapContainer = document.getElementById('mapContainer');
+    if (mapContainer && 'IntersectionObserver' in window) {
+        const mapObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Если блок карты находится в зоне видимости (+300px запас снизу) [1]
+                if (entry.isIntersecting) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
+                    iframe.width = "100%";
+                    iframe.height = "100%";
+                    iframe.style.border = "0";
+                    iframe.allowFullscreen = true;
+                    iframe.loading = "lazy";
+                    iframe.referrerPolicy = "no-referrer-when-downgrade";
+                    
+                    // Удаляем лоадер и рендерим интерактивную карту во фрейме
+                    mapContainer.innerHTML = '';
+                    mapContainer.appendChild(iframe);
+                    
+                    // Прекращаем наблюдение за контейнером
+                    observer.unobserve(mapContainer);
+                }
+            });
+        }, { rootMargin: "0px 0px 300px 0px" }); // Карта начнет качаться за 300px до появления на экране! [1]
+
+        mapObserver.observe(mapContainer);
+    } else if (mapContainer) {
+        // Запасной вариант для старых браузеров без поддержки IntersectionObserver
+        const iframe = document.createElement('iframe');
+        iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.style.border = "0";
+        iframe.allowFullscreen = true;
+        iframe.loading = "lazy";
+        mapContainer.innerHTML = '';
+        mapContainer.appendChild(iframe);
+    }
 });
