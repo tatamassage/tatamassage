@@ -6,17 +6,18 @@
 }
 
 :root {
-    --primary-teal: #24B5C5; /* Фирменная бирюза из логотипа */
+    --primary-teal: #24B5C5; /* Наш фирменный бирюзовый */
     --dark-teal: #198C9B;
-    --sage-green: #6D8E74; /* Натуральный зеленый */
-    --warm-bg: #FAF8F5; /* Спа-бежевый фон */
+    --sage-green: #6D8E74;
+    --warm-bg: #FAFBFB; /* ХОЛОДНЫЙ ФОН: чистый, свежий ледяной белый */
+    --section-cool-bg: #EAF2F4; /* Холодный серо-бирюзовый цвет для контрастных блоков */
     --card-bg: #FFFFFF;
     --text-dark: #1F2223;
     --text-muted: #5F6466;
-    --accent-gold: #C5A880; /* Мягкое золото */
-    --border-color: rgba(197, 168, 128, 0.25);
+    --accent-gold: #C5A880; /* Наше элегантное золото */
+    --border-color: rgba(36, 181, 197, 0.15); /* Холодная рамка */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --font-main: 'Montserrat', sans-serif; /* Единый гармоничный шрифт для всего сайта */
+    --font-main: 'Montserrat', sans-serif;
 }
 
 html {
@@ -55,12 +56,11 @@ img {
 }
 
 /* ДВУХУРОВНЕВЫЙ ХЕДЕР */
-/* Строка 1: Информационная панель */
 .top-bar {
     background-color: var(--dark-teal);
     color: #ffffff;
     font-size: 13px;
-    padding: 8px 0;
+    padding: 10px 0;
     font-weight: 500;
 }
 
@@ -83,12 +83,13 @@ img {
     color: #ffffff;
 }
 
-.phone-top {
-    font-weight: 600;
+.address-top:hover, .phone-top:hover {
+    color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-0.5px);
 }
 
-.phone-top:hover {
-    color: var(--primary-teal);
+.phone-top {
+    font-weight: 600;
 }
 
 .top-bar-right {
@@ -119,11 +120,10 @@ img {
     transform: translateY(-1px) scale(1.1);
 }
 
-/* Строка 2: Меню и логотип */
 header {
     position: sticky;
     top: 0;
-    background-color: rgba(250, 248, 245, 0.96);
+    background-color: rgba(250, 251, 251, 0.96); /* Подстроен под новый холодный цвет */
     backdrop-filter: blur(8px);
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
@@ -194,7 +194,6 @@ header {
     width: 100%;
 }
 
-/* Кнопка гамбургер меню */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -214,13 +213,14 @@ header {
     transition: var(--transition);
 }
 
-/* Баннер / Hero (Настроен показ верхнего края) */
+/* Баннер / Hero (Наложено легкое белое полупрозрачное покрытие) */
 .hero {
     padding: 180px 0 160px 0;
     text-align: center;
-    background-image: url('images/hero-bg-spa.webp');
+    background-image: linear-gradient(rgba(250, 251, 251, 0.35), rgba(250, 251, 251, 0.35)), 
+                      url('images/hero-bg-spa.webp');
     background-size: cover;
-    background-position: center top; /* Выравнивание по верхнему краю для орхидей */
+    background-position: center top;
     background-repeat: no-repeat;
     background-color: var(--warm-bg);
 }
@@ -232,7 +232,7 @@ header {
     letter-spacing: 1.5px;
     color: var(--text-dark);
     font-weight: 800;
-    text-shadow: 0 4px 15px rgba(250, 248, 245, 0.98), 0 2px 5px rgba(250, 248, 245, 0.98);
+    text-shadow: 0 4px 15px rgba(250, 251, 251, 0.98), 0 2px 5px rgba(250, 251, 251, 0.98);
 }
 
 .hero-subtitle {
@@ -241,15 +241,15 @@ header {
     max-width: 720px;
     margin: 0 auto 45px auto;
     font-weight: 500;
-    text-shadow: 0 3px 10px rgba(250, 248, 245, 0.98);
+    text-shadow: 0 3px 10px rgba(250, 251, 251, 0.98);
 }
 
-/* Кнопка Telegram */
+/* Кнопка Telegram / Общая кнопка (Убраны иконки, всегда центрировано) */
 .telegram-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: center; /* Центрирует текст при переносе */
+    text-align: center; /* Центрирует текст */
     background: linear-gradient(135deg, #2AABEE, #229ED9);
     color: #fff !important;
     padding: 16px 36px;
@@ -277,7 +277,7 @@ header {
     fill: currentColor;
 }
 
-/* Секция: Общие стили */
+/* Секции */
 .section-padding {
     padding: 100px 0;
 }
@@ -400,9 +400,9 @@ header {
     transform: scale(1.04);
 }
 
-/* Цены - Просторный табличный стиль */
+/* Цены - Холодный фоновый оттенок */
 .prices {
-    background-color: #F1ECE6;
+    background-color: var(--section-cool-bg);
 }
 
 .price-grid {
@@ -430,6 +430,7 @@ header {
     color: var(--primary-teal);
     padding-bottom: 22px;
     border-bottom: 2px solid rgba(36, 181, 197, 0.2);
+    vertical-align: bottom;
 }
 
 .price-table th:first-child {
@@ -446,6 +447,7 @@ header {
     color: var(--text-muted);
 }
 
+/* Шапка колонки КУРС (10 сеансів) */
 .price-table th:nth-child(3) {
     text-align: right;
     width: 25%;
@@ -453,6 +455,16 @@ header {
     text-transform: uppercase;
     font-weight: 600;
     color: var(--accent-gold);
+}
+
+/* Подстрочник для (10 сеансів) на второй строке - наследует цвет заголовка КУРС */
+.th-sub {
+    display: block;
+    font-size: 13px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    margin-top: 3px;
+    color: inherit; 
 }
 
 .price-table td {
@@ -529,6 +541,15 @@ header {
     line-height: 1.7;
 }
 
+/* Кнопка сертификата (Текст по центру) */
+.cert-btn {
+    text-align: center;
+    justify-content: center;
+    max-width: 320px;
+    display: inline-flex;
+    width: 100%;
+}
+
 .gift-img img {
     border-radius: 15px;
     width: 100%;
@@ -536,9 +557,9 @@ header {
     object-fit: cover;
 }
 
-/* Карусель отзывов */
+/* Карусель отзывов - Холодный фоновый оттенок */
 .reviews-section {
-    background-color: #F1ECE6;
+    background-color: var(--section-cool-bg);
 }
 
 .carousel-container {
@@ -675,7 +696,7 @@ header {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-dark);
-    font-family: var(--font-sans);
+    font-family: var(--font-main);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -717,9 +738,9 @@ header {
     line-height: 1.7;
 }
 
-/* Контакты */
+/* Контакты - Холодный фоновый оттенок */
 .contacts {
-    background-color: #F1ECE6;
+    background-color: var(--section-cool-bg);
 }
 
 .contacts-grid {
@@ -738,6 +759,7 @@ header {
     display: flex;
     align-items: flex-start;
     gap: 15px;
+    margin-bottom: 5px;
 }
 
 .contact-icon {
@@ -774,12 +796,14 @@ header {
     margin-top: 5px;
 }
 
-/* Яркие оригинальные кнопки соцсетей */
+/* Сетка брендовых соцсетей - выровнена строго по левому краю без смещений */
 .social-links-grid {
     display: flex;
     gap: 12px;
     margin-top: 15px;
+    margin-bottom: 25px; /* Зазор перед кнопкой Telegram */
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .social-link-item {
@@ -805,7 +829,6 @@ header {
     fill: #ffffff;
 }
 
-/* Специфические цвета соцсетей */
 .brand-instagram {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
 }
@@ -906,6 +929,35 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Верхняя инфо-панель активна на смартфонах и перестроена по схеме пользователя */
+    .top-bar {
+        display: block;
+        padding: 10px 0;
+        font-size: 12px; /* Увеличили до комфортного для чтения и SEO размера */
+    }
+
+    .top-bar-container {
+        display: flex;
+        flex-direction: row; /* Выравнивание элементов в строку */
+        justify-content: space-between; /* Левая часть - влево, правая - вправо */
+        align-items: center;
+    }
+
+    .top-bar-left {
+        display: flex;
+        flex-direction: column; /* Столбик: Локация сверху, телефон снизу */
+        align-items: flex-start; /* Прижаты к левому краю */
+        gap: 6px;
+    }
+
+    .top-bar-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 15px; /* Зазор между иконками соцсетей */
+    }
+
+    /* Меню и логотип на мобильных */
     .menu-toggle {
         display: flex;
     }
@@ -947,9 +999,22 @@ footer {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    .hero-title {
-        font-size: 32px;
+    /* Баннер приподнят, отступ сверху уменьшен, фон выровнен влево */
+    .hero {
+        padding: 60px 0 50px 0; /* Приподняли контент */
+        background-position: left top; /* Выравнивание фона влево-вверх */
     }
+
+    .hero-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+    
     .section-title {
         font-size: 28px;
     }
@@ -960,9 +1025,5 @@ footer {
 
     .carousel-btn.next {
         right: -10px;
-    }
-    
-    .top-bar {
-        display: none; /* Скрытие верхней строки на мобильных для чистоты экрана */
     }
 }

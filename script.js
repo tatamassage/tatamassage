@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let autoplayTimer = null;
         const autoplayInterval = 5000; // Автопрокрутка каждые 5 секунд
 
-        // Очистим dots перед генерацией на всякий случай
+        // Очистим dots перед генерацией
         dotsContainer.innerHTML = '';
 
         slides.forEach((slide, index) => {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentIndex < slides.length - 1) {
                 currentIndex++;
             } else {
-                currentIndex = 0; // Возврат на первый слайд в конце
+                currentIndex = 0; // Возврат на первый слайд
             }
             updateSlider();
         };
@@ -138,5 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Запуск автопрокрутки
         startAutoplay();
+    }
+
+
+    // --- 4. Автоматическое обновление года в футере ---
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 });
