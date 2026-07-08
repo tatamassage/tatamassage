@@ -8,7 +8,7 @@
 :root {
     --primary-teal: #24B5C5; /* Фирменная бирюза из логотипа */
     --dark-teal: #198C9B;
-    --sage-green: #6D8E74; /* Натуральный зеленый из фона первого блока */
+    --sage-green: #6D8E74; /* Натуральный зеленый */
     --warm-bg: #FAF8F5; /* Спа-бежевый фон */
     --card-bg: #FFFFFF;
     --text-dark: #1F2223;
@@ -16,8 +16,7 @@
     --accent-gold: #C5A880; /* Мягкое золото */
     --border-color: rgba(197, 168, 128, 0.25);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --font-main: 'Montserrat', sans-serif; /* Единый гармоничный шрифт для всего сайта */
 }
 
 html {
@@ -25,7 +24,7 @@ html {
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-main);
     background-color: var(--warm-bg);
     color: var(--text-dark);
     line-height: 1.6;
@@ -33,8 +32,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: var(--font-serif);
-    font-weight: 600;
+    font-family: var(--font-main);
+    font-weight: 700;
 }
 
 a {
@@ -55,11 +54,76 @@ img {
     padding: 0 20px;
 }
 
-/* Шапка / Хедер */
+/* ДВУХУРОВНЕВЫЙ ХЕДЕР */
+/* Строка 1: Информационная панель */
+.top-bar {
+    background-color: var(--dark-teal);
+    color: #ffffff;
+    font-size: 13px;
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+.top-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.top-bar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+}
+
+.phone-top {
+    font-weight: 600;
+}
+
+.phone-top:hover {
+    color: var(--primary-teal);
+}
+
+.top-bar-right {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.top-icon {
+    width: 14px;
+    height: 14px;
+    fill: #ffffff;
+}
+
+.top-social-icon {
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.top-social-icon svg {
+    fill: #ffffff;
+    width: 16px;
+    height: 16px;
+}
+
+.top-social-icon:hover {
+    transform: translateY(-1px) scale(1.1);
+}
+
+/* Строка 2: Меню и логотип */
 header {
     position: sticky;
     top: 0;
-    background-color: rgba(250, 248, 245, 0.95);
+    background-color: rgba(250, 248, 245, 0.96);
     backdrop-filter: blur(8px);
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
@@ -79,17 +143,17 @@ header {
 }
 
 .logo-img {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
 }
 
 .logo-text {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 24px;
-    font-weight: 700;
+    font-family: var(--font-main);
+    font-size: 22px;
+    font-weight: 800;
     letter-spacing: 0.5px;
+    color: var(--text-dark);
 }
 
 .logo-text span {
@@ -150,26 +214,25 @@ header {
     transition: var(--transition);
 }
 
-/* Баннер / Hero */
+/* Баннер / Hero (Настроен показ верхнего края) */
 .hero {
     padding: 180px 0 160px 0;
     text-align: center;
-    /* Ослабили белое перекрытие до минимума */
-    background-image: linear-gradient(rgba(250, 248, 245, 0.08), rgba(250, 248, 245, 0.08)), 
-                      url('images/hero-bg-spa.webp');
+    background-image: url('images/hero-bg-spa.webp');
     background-size: cover;
-    background-position: center;
+    background-position: center top; /* Выравнивание по верхнему краю для орхидей */
     background-repeat: no-repeat;
+    background-color: var(--warm-bg);
 }
 
 .hero-title {
-    font-size: 44px;
+    font-size: 46px;
     line-height: 1.2;
     margin-bottom: 25px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--text-dark);
-    /* Мягкие тени для отличной читаемости текста на светлом фоне */
-    text-shadow: 0 4px 15px rgba(250, 248, 245, 0.95), 0 2px 5px rgba(250, 248, 245, 0.95);
+    font-weight: 800;
+    text-shadow: 0 4px 15px rgba(250, 248, 245, 0.98), 0 2px 5px rgba(250, 248, 245, 0.98);
 }
 
 .hero-subtitle {
@@ -178,10 +241,10 @@ header {
     max-width: 720px;
     margin: 0 auto 45px auto;
     font-weight: 500;
-    text-shadow: 0 3px 10px rgba(250, 248, 245, 0.95);
+    text-shadow: 0 3px 10px rgba(250, 248, 245, 0.98);
 }
 
-/* Стилизованная кнопка Telegram */
+/* Кнопка Telegram */
 .telegram-btn {
     display: inline-flex;
     align-items: center;
@@ -190,7 +253,7 @@ header {
     background: linear-gradient(135deg, #2AABEE, #229ED9);
     color: #fff !important;
     padding: 16px 36px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
@@ -199,6 +262,7 @@ header {
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(34, 158, 217, 0.35);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .telegram-btn:hover {
@@ -224,6 +288,7 @@ header {
     margin-bottom: 60px;
     position: relative;
     padding-bottom: 20px;
+    font-weight: 700;
 }
 
 .section-title::after {
@@ -263,6 +328,7 @@ header {
     font-size: 18px;
     color: var(--text-dark);
     margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .about-features {
@@ -334,7 +400,7 @@ header {
     transform: scale(1.04);
 }
 
-/* Цены - Переделаны в таблицы колонок как в исходнике */
+/* Цены - Просторный табличный стиль */
 .prices {
     background-color: #F1ECE6;
 }
@@ -342,12 +408,12 @@ header {
 .price-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    gap: 50px;
 }
 
 .price-category {
     background-color: var(--card-bg);
-    padding: 40px 25px;
+    padding: 45px 35px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
@@ -358,24 +424,23 @@ header {
 }
 
 .price-table th {
-    font-family: var(--font-serif);
-    font-size: 21px;
-    font-weight: 600;
+    font-family: var(--font-main);
+    font-size: 20px;
+    font-weight: 700;
     color: var(--primary-teal);
-    padding-bottom: 20px;
+    padding-bottom: 22px;
     border-bottom: 2px solid rgba(36, 181, 197, 0.2);
 }
 
 .price-table th:first-child {
     text-align: left;
-    width: 55%;
+    width: 50%;
 }
 
 .price-table th:nth-child(2) {
     text-align: right;
-    width: 20%;
-    font-size: 14px;
-    font-family: var(--font-sans);
+    width: 25%;
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--text-muted);
@@ -383,15 +448,15 @@ header {
 
 .price-table th:nth-child(3) {
     text-align: right;
-    font-size: 14px;
-    font-family: var(--font-sans);
+    width: 25%;
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--accent-gold);
 }
 
 .price-table td {
-    padding: 18px 0;
+    padding: 24px 0; /* Просторное вертикальное расстояние */
     border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
 }
 
@@ -410,7 +475,7 @@ header {
     font-size: 12px;
     color: var(--text-muted);
     font-weight: 400;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 .val {
@@ -471,7 +536,7 @@ header {
     object-fit: cover;
 }
 
-/* Отзывы - Оформлены в виде интерактивной карусели */
+/* Карусель отзывов */
 .reviews-section {
     background-color: #F1ECE6;
 }
@@ -709,6 +774,7 @@ header {
     margin-top: 5px;
 }
 
+/* Яркие оригинальные кнопки соцсетей */
 .social-links-grid {
     display: flex;
     gap: 12px;
@@ -717,30 +783,49 @@ header {
 }
 
 .social-link-item {
-    background-color: var(--card-bg);
     padding: 10px 22px;
     border-radius: 30px;
     font-size: 13px;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .social-link-item:hover {
-    border-color: var(--primary-teal);
-    color: var(--primary-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
-.soc-icon {
+.social-link-item svg {
     width: 16px;
     height: 16px;
-    object-fit: contain;
+    fill: #ffffff;
+}
+
+/* Специфические цвета соцсетей */
+.brand-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.brand-facebook {
+    background-color: #1877F2;
+}
+
+.brand-tiktok {
+    background-color: #000000;
 }
 
 .social-buttons {
     margin-top: 15px;
+}
+
+.map-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .map-container {
@@ -875,5 +960,9 @@ footer {
 
     .carousel-btn.next {
         right: -10px;
+    }
+    
+    .top-bar {
+        display: none; /* Скрытие верхней строки на мобильных для чистоты экрана */
     }
 }

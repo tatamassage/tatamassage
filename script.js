@@ -53,90 +53,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. Логика карусели отзывов (Слайдер) ---
     const track = document.getElementById('carouselTrack');
-    const slides = Array.from(track.children);
-    const nextButton = document.getElementById('nextBtn');
-    const prevButton = document.getElementById('prevBtn');
-    const dotsContainer = document.getElementById('carouselDots');
-    
-    let currentIndex = 0;
-    let autoplayTimer = null;
-    const autoplayInterval = 5000; // Прокрутка каждые 5 секунд
+    if (track) {
+        const slides = Array.from(track.children);
+        const nextButton = document.getElementById('nextBtn');
+        const prevButton = document.getElementById('prevBtn');
+        const dotsContainer = document.getElementById('carouselDots');
+        
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        const autoplayInterval = 5000; // Автопрокрутка каждые 5 секунд
 
-    // Генерация точек навигации
-    slides.forEach((slide, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-            goToSlide(index);
+        // Очистим dots перед генерацией на всякий случай
+        dotsContainer.innerHTML = '';
+
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetAutoplay();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.children);
+
+        const updateSlider = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[currentIndex]) {
+                dots[currentIndex].classList.add('active');
+            }
+        };
+
+        const goToSlide = (index) => {
+            currentIndex = index;
+            updateSlider();
+        };
+
+        const showNextSlide = () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Возврат на первый слайд в конце
+            }
+            updateSlider();
+        };
+
+        const showPrevSlide = () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = slides.length - 1; // Переход на последний слайд
+            }
+            updateSlider();
+        };
+
+        nextButton.addEventListener('click', () => {
+            showNextSlide();
             resetAutoplay();
         });
-        dotsContainer.appendChild(dot);
-    });
 
-    const dots = Array.from(dotsContainer.children);
+        prevButton.addEventListener('click', () => {
+            showPrevSlide();
+            resetAutoplay();
+        });
 
-    const updateSlider = () => {
-        // Сдвигаем трек на ширину текущего слайда
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
-        // Обновляем активные классы для точек
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[currentIndex].classList.add('active');
-    };
+        const startAutoplay = () => {
+            autoplayTimer = setInterval(showNextSlide, autoplayInterval);
+        };
 
-    const goToSlide = (index) => {
-        currentIndex = index;
-        updateSlider();
-    };
+        const stopAutoplay = () => {
+            clearInterval(autoplayTimer);
+        };
 
-    const showNextSlide = () => {
-        if (currentIndex < slides.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // Возврат на первый слайд в конце
-        }
-        updateSlider();
-    };
+        const resetAutoplay = () => {
+            stopAutoplay();
+            startAutoplay();
+        };
 
-    const showPrevSlide = () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = slides.length - 1; // Переход на последний слайд
-        }
-        updateSlider();
-    };
+        track.addEventListener('mouseenter', stopAutoplay);
+        track.addEventListener('mouseleave', startAutoplay);
 
-    // Навешиваем обработчики на кнопки-стрелки
-    nextButton.addEventListener('click', () => {
-        showNextSlide();
-        resetAutoplay();
-    });
-
-    prevButton.addEventListener('click', () => {
-        showPrevSlide();
-        resetAutoplay();
-    });
-
-    // Логика автопрокрутки
-    const startAutoplay = () => {
-        autoplayTimer = setInterval(showNextSlide, autoplayInterval);
-    };
-
-    const stopAutoplay = () => {
-        clearInterval(autoplayTimer);
-    };
-
-    const resetAutoplay = () => {
-        stopAutoplay();
+        // Запуск автопрокрутки
         startAutoplay();
-    };
-
-    // Остановка слайдера при наведении курсора
-    track.addEventListener('mouseenter', stopAutoplay);
-    track.addEventListener('mouseleave', startAutoplay);
-
-    // Запуск автопрокрутки
-    startAutoplay();
+    }
 });
