@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TATA MASSAGE | Перенаправлення...</title>
+    
+    <!-- Подключение Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/logo-tata-massages.svg">
+
+    <!-- Google Tag Manager (ID сохранен) -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WCPT3DMT');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-teal: #24B5C5;
+            --dark-teal: #198C9B;
+            --warm-bg: #F4F8F9; /* Фирменный холодный фон */
+            --text-dark: #1F2223;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--warm-bg);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        /* Красивый анимированный лоадер */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(36, 181, 197, 0.15);
+            border-radius: 50%;
+            border-top-color: var(--primary-teal);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCPT3DMT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="loader-container">
+        <div class="spinner"></div>
+        <div class="status-text" id="statusText">Завантаження...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Читаем параметры из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const to = urlParams.get('to');
+
+            // Список ваших официальных социальных сетей
+            const socialDestinations = {
+                instagram: 'https://www.instagram.com/tata.massages/',
+                facebook: 'http://facebook.com/tatmassages/',
+                tiktok: 'https://www.tiktok.com/@tatamassages',
+                telegram: 'https://t.me/+380671099469'
+            };
+
+            // Если параметр "to" указан неверно или отсутствует, ведем на главный сайт
+            const targetUrl = socialDestinations[to] || 'https://www.tatamassage.pp.ua/';
+
+            // Локализация текста перенаправления
+            const cleanName = to ? to.charAt(0).toUpperCase() + to.slice(1) : 'TATA MASSAGE';
+            document.getElementById('statusText').textContent = `Перенаправлення на ${cleanName}...`;
+
+            // Задержка 500мс перед редиректом
+            // Она критически важна, чтобы GTM и GA4 успели отправить пакет данных в Google Аналитику
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
