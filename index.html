@@ -1582,7 +1582,7 @@ footer {
         </div>
     </footer>
 
-    <!-- Встроенный интерактивный JS для максимальной производительности (script.js больше не требуется!) -->
+<!-- Встроенный интерактивный JS для максимальной производительности -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         
@@ -1649,7 +1649,6 @@ footer {
             let autoplayTimer = null;
             const autoplayInterval = 5000; // Автопрокрутка каждые 5 секунд
 
-            // Очистим dots перед генерацией
             dotsContainer.innerHTML = '';
 
             slides.forEach((slide, index) => {
@@ -1722,7 +1721,6 @@ footer {
             track.addEventListener('mouseenter', stopAutoplay);
             track.addEventListener('mouseleave', startAutoplay);
 
-            // Запуск автопрокрутки
             startAutoplay();
         }
 
@@ -1739,7 +1737,6 @@ footer {
         if (mapContainer && 'IntersectionObserver' in window) {
             const mapObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // Если блок карты находится в зоне видимости (+300px запас снизу) [1]
                     if (entry.isIntersecting) {
                         const iframe = document.createElement('iframe');
                         iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
@@ -1750,19 +1747,16 @@ footer {
                         iframe.loading = "lazy";
                         iframe.referrerPolicy = "no-referrer-when-downgrade";
                         
-                        // Удаляем лоадер и рендерим интерактивную карту во фрейме
                         mapContainer.innerHTML = '';
                         mapContainer.appendChild(iframe);
                         
-                        // Прекращаем наблюдение за контейнером
                         observer.unobserve(mapContainer);
                     }
                 });
-            }, { rootMargin: "0px 0px 300px 0px" }); // Карта начнет качаться за 300px до появления на экране! [1]
+            }, { rootMargin: "0px 0px 300px 0px" });
 
             mapObserver.observe(mapContainer);
         } else if (mapContainer) {
-            // Запасной вариант для старых браузеров без поддержки IntersectionObserver
             const iframe = document.createElement('iframe');
             iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
             iframe.width = "100%";
@@ -1773,7 +1767,37 @@ footer {
             mapContainer.innerHTML = '';
             mapContainer.appendChild(iframe);
         }
+
+
+        // --- 6. Плавный скролл без изменения хэша (#) в строке адреса ---
+        // Исключает появление символов #prices, #contacts в браузере и предотвращает наложение шапки на заголовки [3]
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // Проверяем, что ссылка действительно ведет на внутренний блок страницы
+                if (targetId !== '#') {
+                    e.preventDefault(); // Запрещаем браузеру менять адресную строку [3]
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Динамически вычисляем высоту шапки (включая верхний Top Bar), чтобы не перекрывать заголовки блоков
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
     });
     </script>
+</body>
+</html>
 </body>
 </html>
