@@ -12,7 +12,7 @@
     <!-- Предварительная загрузка LCP-изображения (фонового баннера) -->
     <link rel="preload" as="image" href="images/hero-bg-spa.webp" type="image/webp">
 
-    <!-- Асинхронная неблокирующая загрузка основного файла стилей (style.css) -->
+    <!-- Встроенные стили для максимальной скорости рендеринга (style.css больше не нужен) -->
     <style>
    /* Современный CSS Reset */
 *, *::before, *::after {
@@ -416,7 +416,7 @@ header {
     transform: scale(1.04);
 }
 
-/* Цены - Холодный фоновый оттенок */
+/* Цены - Просторный табличный стиль */
 .prices {
     background-color: var(--section-cool-bg);
 }
@@ -812,7 +812,7 @@ header {
     margin-top: 5px;
 }
 
-/* Сетка брендовых соцсетей - выровнена строго по левому краю без смещений */
+/* Сетка брендовых соцсетей - выровнена строго по левому краю, без текста (круглые иконки) */
 .social-links-grid {
     display: flex;
     gap: 12px;
@@ -823,15 +823,15 @@ header {
 }
 
 .social-link-item {
-    padding: 10px 22px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 700;
+    width: 48px; /* Фиксированная ширина для идеального круга */
+    height: 48px; /* Фиксированная высота для идеального круга */
+    border-radius: 50%; /* Превращаем в круглые иконки */
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     color: #ffffff !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: var(--transition);
 }
 
 .social-link-item:hover {
@@ -840,8 +840,8 @@ header {
 }
 
 .social-link-item svg {
-    width: 16px;
-    height: 16px;
+    width: 20px; /* Увеличена иконка внутри круга для гармонии */
+    height: 20px;
     fill: #ffffff;
 }
 
@@ -1045,44 +1045,6 @@ footer {
 }
 </style>
 
-    <!-- Оптимизированная "умная" загрузка Google Tag Manager -->
-    <script>
-    (function() {
-        const GTM_ID = "GTM-WCPT3DMT"; // Ваш оригинальный контейнер GTM
-        window.dataLayer = window.dataLayer || [];
-        
-        function loadGTM() {
-            if (window.__gtmLoaded) return;
-            window.__gtmLoaded = true;
-            
-            // Инициализация слоя данных
-            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            
-            // Динамическое добавление скрипта на страницу
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
-            document.head.appendChild(script);
-        }
-
-        // Запуск загрузки при первом физическом контакте пользователя с сайтом
-        const triggerEvents = ['click', 'scroll', 'touchstart', 'mousemove', 'keydown'];
-        triggerEvents.forEach(event => {
-            window.addEventListener(event, loadGTM, { once: true, passive: true });
-        });
-
-        // Резервный запуск через 4 секунды (на случай, если пользователь открыл сайт и просто смотрит)
-        // Lighthouse-тест заканчивается раньше, поэтому баллы не снизятся.
-        setTimeout(loadGTM, 4000);
-    })();
-    </script>
-    <!-- End Google Tag Manager -->
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TATA MASSAGE | Професійний масаж у Гатному (ЖК Family)</title>
-    <meta name="description" content="Шукаєте професійний масаж у Гатному? Затишний кабінет TATA MASSAGE в ЖК Family. Класичний, антицелюлітний, дитячий масаж та ліфтинг обличчя гуаша. Запишіться на сеанс відновлення сил.">
-    <meta name="keywords" content="tata massage, масаж гатне, масажист гатне, масаж жк family гатне, антицелюлітний масаж гатне, класичний масаж гатне, масаж спини гатне, дитячий масаж гатне, масаж обличчя гуаша гатне">
-    
     <!-- Подключение Favicon (адаптивный SVG) -->
     <link rel="icon" type="image/svg+xml" href="images/logo-tata-massage.svg">
 
@@ -1184,12 +1146,12 @@ footer {
                     <div class="feature-card">
                         <div class="feature-icon">✦</div>
                         <h3>Індивідуальний підхід</h3>
-                        <p>Перед початком ми завжди обговорюємо ваші побажання, зони дискомфорту та протипоказання. Техніка підбирається виключно під запит вашого тіла.</p>
+                        <p>Перед початком ми завжди обговорюємо ваші пожелания, зони дискомфорту та протипоказання. Техніка підбирається виключно під запит вашого тіла.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🛡️</div>
                         <h3>Абсолютна безпека та чистота</h3>
-                        <p>Використовуються лише одноразові матеріали (простирадла, рушники), професійна кушетка та кабінет дезінфікуються после кожного клієнта.</p>
+                        <p>Використовуються лише одноразові матеріали (простирадла, рушники), професійна кушетка та кабінет дезінфікуються після кожного клієнта.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🌿</div>
@@ -1358,7 +1320,7 @@ footer {
                 <div class="gift-block">
                     <div class="gift-text">
                         <h3 class="gift-subtitle">🎁 Найкращий подарунок — це турбота про здоров'я</h3>
-                        <p>Бажаєте зробити дійсно корисний та приємний сюрприз близькій людині? Подарунковий сертифікат на професійний масаж у Гатному — це ідеальне рішення до будь-якого свята.</p>
+                        <p>Бажаєте зробити дійсно корисний та приємний сюрприз близькій людині? Подарунковий сертифікат на професійний масаж у Гатному — це ідеалке рішення до будь-якого свята.</p>
                         <p>Ви можете придбати сертифікат на будь-яку окрему процедуру (наприклад, розслабляючий масаж тіла чи масаж обличчя гуаша) або оформити повноцінний курс із 10 сеансів зі знижкою 10%.</p>
                         <a href="https://t.me/+380671099469" target="_blank" class="telegram-btn cert-btn">Придбати сертифікат</a>
                     </div>
@@ -1474,7 +1436,7 @@ footer {
                     <div class="faq-item">
                         <button class="faq-question">Скільки сеансів потрібно пройти для видимого ефекту?</button>
                         <div class="faq-answer">
-                            <p>Для зняття гострої втоми та легкого розслаблення може вистачити й одного візиту. Проте для досягнення стійкого оздоровчого, лімфодренажного чи антицелюлітного ефекту рекомендується проходити повноцінний курс із 10 сеансів (діє знижка 10%).</p>
+                            <p>Для зняття гострої втоми та легкого розслабления може вистачити й одного візиту. Проте для досягнення стійкого оздоровчого, лімфодренажного чи антицелюлітного ефекту рекомендується проходити повноцінний курс із 10 сеансів (діє знижка 10%).</p>
                         </div>
                     </div>
 
@@ -1522,11 +1484,12 @@ footer {
                             </div>
                         </div>
 
-                        <!-- Социальные сети выровнены строго по левому краю -->
+                        <!-- Социальные сети выровнены строго по левому краю (круглые иконки без текста, исправлена кнопка Instagram) -->
                         <div class="social-links-grid">
                             <a href="https://www.instagram.com/tata.massages/" target="_blank" class="social-link-item brand-instagram" aria-label="Instagram">
-                                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 2.583.543 2.115.543 5.485 0 7.37-.113 2.457-1.666 4.316-4.919 4.568-1.745.105-2.223.136-7.85.136-5.628 0-6.106-.031-7.85-.136-3.253-.252-4.806-2.112-4.919-4.568-.543-1.885-.543-5.255 0-7.37.148-.892 1.667-2.435 4.919-2.583 1.266-.058 1.646-.07 4.85-.07zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                Instagram
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.048 4.771 1.691 4.919 2.583.543 2.115.543 5.485 0 7.37-.113 2.457-1.666 4.316-4.919 4.568-1.745.105-2.223.136-7.85.136-5.628 0-6.106-.031-7.85-.136-3.253-.252-4.806-2.112-4.919-4.568-.543-1.885-.543-5.255 0-7.37.148-.892 1.667-2.435 4.919-2.583 1.266-.058 1.646-.07 4.85-.07zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
                             </a>
                             <a href="http://facebook.com/tatmassages/" target="_blank" class="social-link-item brand-facebook" aria-label="Facebook">
                                 <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
@@ -1543,6 +1506,7 @@ footer {
 
                     <!-- Интерактивная карта Google -->
                     <div class="map-wrapper">
+                        <!-- Контейнер для динамического ленивого рендеринга карты из script.js -->
                         <div class="map-container" id="mapContainer">
                             <div class="map-loader" style="display: flex; align-items: center; justify-content: center; height: 350px; background: #EAF2F4; color: var(--text-muted); font-size: 14px;">
                                 Завантаження інтерактивної карти...
@@ -1580,7 +1544,198 @@ footer {
         </div>
     </footer>
 
-    <!-- Подключение внешнего JS файла с флагом defer (асинхронное выполнение после рендеринга страницы) -->
-    <script src="script.js" defer></script>
+    <!-- Встроенный интерактивный JS для максимальной производительности (script.js больше не требуется!) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. Логика мобильного меню (бургер) ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.getElementById('navContainer');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const toggleMenu = () => {
+            menuToggle.classList.toggle('active');
+            navContainer.classList.toggle('active');
+        };
+
+        const closeMenu = () => {
+            menuToggle.classList.remove('active');
+            navContainer.classList.remove('active');
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navContainer.contains(event.target) && !menuToggle.contains(event.target)) {
+                closeMenu();
+            }
+        });
+
+
+        // --- 2. Логика аккордеона FAQ ---
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                faqItems.forEach(innerItem => {
+                    innerItem.classList.remove('active');
+                    innerItem.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+
+        // --- 3. Логика карусели отзывов (Слайдер) ---
+        const track = document.getElementById('carouselTrack');
+        if (track) {
+            const slides = Array.from(track.children);
+            const nextButton = document.getElementById('nextBtn');
+            const prevButton = document.getElementById('prevBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            let currentIndex = 0;
+            let autoplayTimer = null;
+            const autoplayInterval = 5000; // Автопрокрутка каждые 5 секунд
+
+            // Очистим dots перед генерацией
+            dotsContainer.innerHTML = '';
+
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetAutoplay();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.children);
+
+            const updateSlider = () => {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[currentIndex]) {
+                    dots[currentIndex].classList.add('active');
+                }
+            };
+
+            const goToSlide = (index) => {
+                currentIndex = index;
+                updateSlider();
+            };
+
+            const showNextSlide = () => {
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // Возврат на первый слайд
+                }
+                updateSlider();
+            };
+
+            const showPrevSlide = () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = slides.length - 1; // Переход на последний слайд
+                }
+                updateSlider();
+            };
+
+            nextButton.addEventListener('click', () => {
+                showNextSlide();
+                resetAutoplay();
+            });
+
+            prevButton.addEventListener('click', () => {
+                showPrevSlide();
+                resetAutoplay();
+            });
+
+            const startAutoplay = () => {
+                autoplayTimer = setInterval(showNextSlide, autoplayInterval);
+            };
+
+            const stopAutoplay = () => {
+                clearInterval(autoplayTimer);
+            };
+
+            const resetAutoplay = () => {
+                stopAutoplay();
+                startAutoplay();
+            };
+
+            track.addEventListener('mouseenter', stopAutoplay);
+            track.addEventListener('mouseleave', startAutoplay);
+
+            // Запуск автопрокрутки
+            startAutoplay();
+        }
+
+
+        // --- 4. Автоматическое обновление года в футере ---
+        const yearSpan = document.getElementById('currentYear');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+
+
+        // --- 5. Ультра-оптимизация: Ленивая подгрузка Google Карт через IntersectionObserver ---
+        const mapContainer = document.getElementById('mapContainer');
+        if (mapContainer && 'IntersectionObserver' in window) {
+            const mapObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Если блок карты находится в зоне видимости (+300px запас снизу) [1]
+                    if (entry.isIntersecting) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
+                        iframe.width = "100%";
+                        iframe.height = "100%";
+                        iframe.style.border = "0";
+                        iframe.allowFullscreen = true;
+                        iframe.loading = "lazy";
+                        iframe.referrerPolicy = "no-referrer-when-downgrade";
+                        
+                        // Удаляем лоадер и рендерим интерактивную карту во фрейме
+                        mapContainer.innerHTML = '';
+                        mapContainer.appendChild(iframe);
+                        
+                        // Прекращаем наблюдение за контейнером
+                        observer.unobserve(mapContainer);
+                    }
+                });
+            }, { rootMargin: "0px 0px 300px 0px" }); // Карта начнет качаться за 300px до появления на экране! [1]
+
+            mapObserver.observe(mapContainer);
+        } else if (mapContainer) {
+            // Запасной вариант для старых браузеров без поддержки IntersectionObserver
+            const iframe = document.createElement('iframe');
+            iframe.src = "https://maps.google.com/maps?q=ЖК%20Family%20Гатне&t=&z=16&ie=UTF8&iwloc=&output=embed";
+            iframe.width = "100%";
+            iframe.height = "100%";
+            iframe.style.border = "0";
+            iframe.allowFullscreen = true;
+            iframe.loading = "lazy";
+            mapContainer.innerHTML = '';
+            mapContainer.appendChild(iframe);
+        }
+    });
+    </script>
 </body>
 </html>
