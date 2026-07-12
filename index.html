@@ -1135,7 +1135,7 @@ footer {
         <div class="container header-container">
             <div class="logo-block">
                 <img src="images/logo-tata-massage.svg" alt="Логотип TATA MASSAGE у вигляді лотоса" class="logo-img" width="44" height="44">
-                <a href="#" class="logo-text">TATA<span> MASSAGE</span></a>
+                <a href="/" class="logo-text" id="logoLink">TATA<span> MASSAGE</span></a>
             </div>
             
             <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
@@ -1178,7 +1178,7 @@ footer {
                     <div class="about-text">
                         <p class="intro-paragraph">Вітаю! Мене звати Тетяна, я сертифікований майстер масажу. Я перетворила частину свого простору у Гатному на затишний кабінет, де немає міської метушні, шуму адміністраторів чи черг. Тут усе створено для вашого комфорту та повного розслаблення.</p>
                         
-                        <p>Мій кабінет розташований у спокійному куточку Гатного, в ЖК "Family", де ви зможете повністю відключитися від щоденних турбот та присвятити час своєму здоров'ю.</p>
+                        <p>Мій кабінет розташований у спокійному куточку Гатного, в ЖК "Family", де ви зможете повністю відключитися від щоденних турбот та присвятити час своему здоров'ю.</p>
                     </div>
                 </div>
                 
@@ -1413,7 +1413,7 @@ footer {
                             <div class="review-slide">
                                 <div class="review-card">
                                     <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">«Пройшла курс антицелюлітного масажу у майстра Тетяни. Дівчатка не повірите, але це правда працює! Стегна стали більш підтягнуті, целюліт скоротився вдвічі! Взагалі отримала величезне задоволення від масажу. Всім рекомендую!»</p>
+                                    <p class="review-text">«Пройшла курс антицелюлітного масажу у майстра Тетяни. Дівчатка не повірите, але это правда працює! Стегна стали більш підтягнуті, целюліт скоротився вдвічі! Взагалі отримала величезне задоволення від масажу. Всім рекомендую!»</p>
                                     <span class="review-tag">Клієнтка курсу</span>
                                 </div>
                             </div>
@@ -1422,7 +1422,7 @@ footer {
                             <div class="review-slide">
                                 <div class="review-card">
                                     <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">«Была на массаже у Татьяны, очень чуткий отзывчивый человек, массаж великолепный, особенно медовый, ощущение не повторимо !!!»</p>
+                                    <p class="review-text">«Была на массаже у Татьяны, очень чуткий отзывчивый человек, массаж великолепный, особенно медовый, ощущение не неповторимо !!!»</p>
                                     <span class="review-tag">Аліна</span>
                                 </div>
                             </div>
@@ -1806,9 +1806,19 @@ footer {
             });
         });
 
+        // --- 7. Плавный скролл вверх при клике на логотип без изменения URL ---
+        const logoLink = document.getElementById('logoLink');
+        if (logoLink) {
+            logoLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
     });
     </script>
-</body>
-</html>
 </body>
 </html>
