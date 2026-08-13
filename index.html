@@ -46,8 +46,8 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <!-- Предварительная загрузка LCP-изображения (фонового баннера) -->
-    <link rel="preload" as="image" href="images/hero-bg-spa.webp" type="image/webp">
+    <!-- Предварительная загрузка LCP-изображения (фонового баннера) с наивысшим приоритетом -->
+    <link rel="preload" as="image" href="images/hero-bg-spa.webp" type="image/webp" fetchpriority="high">
 
     <!-- Мета-теги Open Graph для красивого отображения ссылки в мессенджерах (Viber, Telegram, FB, WhatsApp) -->
     <meta property="og:locale" content="uk_UA">
@@ -107,7 +107,7 @@
     }
     </script>
 
-    <!-- Встроенные стили для максимальной скорости рендеринга -->
+    <!-- Встроенные стили для максимальной скорости рендеринга (style.css больше не нужен) -->
     <style>
    /* Современный CSS Reset */
 *, *::before, *::after {
@@ -192,6 +192,7 @@ img {
     align-items: center;
     gap: 8px;
     color: #ffffff;
+    padding: 4px 0; /* Обеспечивает безопасное вертикальное расстояние на мобильных */
 }
 
 .address-top:hover, .phone-top:hover {
@@ -205,7 +206,7 @@ img {
 
 .top-bar-right {
     display: flex;
-    gap: 18px;
+    gap: 4px; /* Небольшой зазор, компенсирующий ширину самих кнопок */
     align-items: center;
 }
 
@@ -218,6 +219,9 @@ img {
 .top-social-icon {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 44px; /* Область касания 44px для соблюдения стандартов (Accessibility) */
+    height: 44px;
     transition: var(--transition);
 }
 
@@ -568,7 +572,7 @@ header {
     color: var(--accent-gold);
 }
 
-/* Подстрочник для (10 сеансів) на второй строке - наследует цвет заголовка КУРС */
+/* Подстрочник для (10 сеансів) на второй строке */
 .th-sub {
     display: block;
     font-size: 10px; /* Уменьшено до 10px, чтобы текст на смартфонах не плыл */
@@ -962,11 +966,12 @@ header {
     gap: 12px;
 }
 
+/* Замена min-height на height полностью убирает сдвиги CLS */
 .map-container {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.035);
-    min-height: 350px;
+    height: 350px;
     background-color: #fff;
 }
 
@@ -1058,14 +1063,14 @@ footer {
         display: flex;
         flex-direction: column; /* Столбик: Локация сверху, телефон снизу */
         align-items: flex-start; /* Прижаты к левому краю */
-        gap: 6px;
+        gap: 12px; /* Безопасный тач-интервал на смартфонах */
     }
 
     .top-bar-right {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        gap: 15px; /* Зазор между иконками соцсетей */
+        gap: 6px;
     }
 
     /* Меню и логотип на мобильных */
@@ -1188,7 +1193,7 @@ footer {
 
         <div class="container header-container">
             <div class="logo-block">
-                <img src="images/logo-tata-massage.svg" alt="Логотип TATA MASSAGE у вигляді лотоса" class="logo-img" width="44" height="44">
+                <img src="images/logo-tata-massage.svg" alt="Логотип TATA MASSAGE у вигляді лотоса" class="logo-img" width="44" height="44" decoding="async">
                 <a href="/" class="logo-text" id="logoLink">TATA<span> MASSAGE</span></a>
             </div>
             
@@ -1227,12 +1232,12 @@ footer {
                 <h2 class="section-title">Про майстра та кабінет</h2>
                 <div class="about-grid">
                     <div class="about-img-block">
-                        <img src="images/masazhist-tetiana-gatne.webp" alt="Сертифікований майстер масажу Тетяна у своєму кабінеті в Гатному" width="480" height="480">
+                        <img src="images/masazhist-tetiana-gatne.webp" alt="Сертифікований майстер масажу Тетяна у своєму кабінеті в Гатному" width="480" height="480" decoding="async">
                     </div>
                     <div class="about-text">
                         <p class="intro-paragraph">Вітаю! Мене звати Тетяна, я сертифікований майстер масажу. Я перетворила частину свого простору у Гатному на затишний кабінет, де немає міської метушні, шуму адміністраторів чи черг. Тут усе створено для вашого комфорту та повного розслаблення.</p>
                         
-                        <p>Мій кабінет розташований у спокійному куточку Гатного, в ЖК "Family", де ви зможете повністю відключитися від щоденних турбот та присвятити час своєму здоров'ю.</p>
+                        <p>Мій кабінет розташований у спокійному куточку Гатного, в ЖК "Family", де ви зможете повністю відключитися від щоденних турбот та присвятити час свого здоров'ю.</p>
                     </div>
                 </div>
                 
@@ -1260,16 +1265,16 @@ footer {
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/masazh-shyino-komirtsevoi-zony.webp" alt="Професійний класичний масаж шийно-комірцевої зони (ШКЗ) в кабінеті Тетяни" width="220" height="280" loading="lazy">
+                        <img src="images/masazh-shyino-komirtsevoi-zony.webp" alt="Професійний класичний масаж шийно-комірцевої зони (ШКЗ) в кабінеті Тетяни" width="220" height="280" loading="lazy" decoding="async">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/masazh-ruk-ta-dolonei.webp" alt="Розслабляючий ручний масаж рук та долонь з використанням олії" width="220" height="280" loading="lazy">
+                        <img src="images/masazh-ruk-ta-dolonei.webp" alt="Розслабляючий ручний масаж рук та долонь з використанням олії" width="220" height="280" loading="lazy" decoding="async">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/masazh-nih-ta-stop.webp" alt="Професійний масаж ніг та стоп для покращення кровообігу" width="220" height="280" loading="lazy">
+                        <img src="images/masazh-nih-ta-stop.webp" alt="Професійний масаж ніг та стоп для покращення кровообігу" width="220" height="280" loading="lazy" decoding="async">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/antytseliulitnyi-masazh-gatne.webp" alt="Ручний anti-cellulite масаж стегон для пружності шкіри у Гатному" width="220" height="280" loading="lazy">
+                        <img src="images/antytseliulitnyi-masazh-gatne.webp" alt="Ручний anti-cellulite масаж стегон для пружності шкіри у Гатному" width="220" height="280" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -1419,7 +1424,7 @@ footer {
                         <a href="https://t.me/+380671099469" target="_blank" class="telegram-btn cert-btn">Придбати сертифікат</a>
                     </div>
                     <div class="gift-img">
-                        <img src="images/podarunkovi-sertyfikaty-masazh.webp" alt="Подарункові сертифікати на масаж у крафтових конвертах з бантом" width="450" height="300" loading="lazy">
+                        <img src="images/podarunkovi-sertyfikaty-masazh.webp" alt="Подарункові сертифікати на масаж у крафтових конвертах з бантом" width="450" height="300" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -1467,7 +1472,7 @@ footer {
                             <div class="review-slide">
                                 <div class="review-card">
                                     <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">«Пройшла курс антицелюлітного масажу у майстра Тетяни. Дівчатка не повірите, але это правда працює! Стегна стали більш підтягнуті, целюліт скоротився вдвічі! Взагалі отримала величезне задоволення від масажу. Всім рекомендую!»</p>
+                                    <p class="review-text">«Пройшла курс антицелюлітного масажу у майстра Тетяни. Дівчатка не повірите, але це правда працює! Стегна стали більш підтягнуті, целюліт скоротився вдвічі! Взагалі отримала величезне задоволення від масажу. Всім рекомендую!»</p>
                                     <span class="review-tag">Клієнтка курсу</span>
                                 </div>
                             </div>
@@ -1627,7 +1632,7 @@ footer {
         <div class="container footer-container">
             <div class="footer-brand">
                 <div class="logo-block">
-                    <img src="images/logo-tata-massage.svg" alt="Логотип TATA MASSAGE" class="logo-img" width="44" height="44" loading="lazy">
+                    <img src="images/logo-tata-massage.svg" alt="Логотип TATA MASSAGE" class="logo-img" width="44" height="44" loading="lazy" decoding="async">
                     <span class="logo-text">TATA<span> MASSAGE</span></span>
                 </div>
                 <p class="footer-desc">Професійний масаж для дорослих та дітей у передмісті Києва. Приватний кабінет у ЖК "Family" (Гатне).</p>
@@ -1702,7 +1707,7 @@ footer {
         });
 
 
-        // --- 3. Логика карусели отзывов (Слайдер) ---
+        // --- 3. Логика карусели отзывов (Слайдер с поддержкой нативных свайпов на мобильных) ---
         const track = document.getElementById('carouselTrack');
         if (track) {
             const slides = Array.from(track.children);
@@ -1785,6 +1790,48 @@ footer {
 
             track.addEventListener('mouseenter', stopAutoplay);
             track.addEventListener('mouseleave', startAutoplay);
+
+            // --- Добавлена нативная поддержка свайпов для мобильных устройств ---
+            let startX = 0;
+            let startY = 0;
+            let isSwiping = false;
+
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwiping = true;
+                stopAutoplay();
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = startX - currentX;
+                const diffY = startY - currentY;
+
+                // Блокируем вертикальный скролл страницы только при горизонтальном свайпе слайдера
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (e.cancelable) e.preventDefault();
+                }
+            }, { passive: false });
+
+            track.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                const endX = e.changedTouches[0].clientX;
+                const diffX = startX - endX;
+
+                const threshold = 50; // Порог свайпа в пикселях
+                if (Math.abs(diffX) > threshold) {
+                    if (diffX > 0) {
+                        showNextSlide();
+                    } else {
+                        showPrevSlide();
+                    }
+                }
+                isSwiping = false;
+                startAutoplay();
+            }, { passive: true });
 
             startAutoplay();
         }
