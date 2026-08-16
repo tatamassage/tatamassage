@@ -61,51 +61,48 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/webp">
 
-    <!-- Микроразметка Schema.org для локального продвижения и связи с Google Картами -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "TATA MASSAGE",
-      "image": "https://tatamassage.pp.ua/images/logo-tata-massage.svg",
-      "@id": "https://tatamassage.pp.ua/#professional-service",
-      "url": "https://tatamassage.pp.ua/",
-      "telephone": "+380671099469",
-      "priceRange": "UAH",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ЖК Family",
-        "addressLocality": "Гатне",
-        "addressRegion": "Київська область",
-        "postalCode": "08160",
-        "addressCountry": "UA"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 50.3495764,
-        "longitude": 30.4215248
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "09:00",
-        "closes": "21:00"
-      },
-      "sameAs": [
-        "https://www.instagram.com/tata.massages/",
-        "http://facebook.com/tatmassages/",
-        "https://www.tiktok.com/@tatamassages"
-      ]
-    }
-    </script>
+    <!-- Микроразметка Schema.org с поддержкой вывода Звезд (Рейтинга) в поиске Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Професійний масаж у Гатному",
+  "image": "https://tatamassage.pp.ua/images/masazhist-tetiana-gatne.webp",
+  "description": "Класичний, антицелюлітний, дитячий масаж та ліфтинг обличчя гуаша в ЖК Family поруч із Києвом.",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "TATA MASSAGE",
+    "image": "https://tatamassage.pp.ua/images/logo-tata-massage.svg",
+    "telephone": "+380671099469",
+    "priceRange": "UAH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ЖК Family",
+      "addressLocality": "Гатне",
+      "addressRegion": "Київська область",
+      "postalCode": "08160",
+      "addressCountry": "UA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.3495764,
+      "longitude": 30.4215248
+    },
+    "sameAs": [
+      "https://www.instagram.com/tata.massages/",
+      "http://facebook.com/tatmassages/",
+      "https://www.tiktok.com/@tatamassages"
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "6"
+  }
+}
+</script>
 
     <!-- Встроенные стили для максимальной скорости рендеринга -->
     <style>
