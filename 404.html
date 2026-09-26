@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Резервный авторедирект через 3 секунды, если в браузере отключен JS -->
+    <meta http-equiv="refresh" content="3; url=/">
+    
+    <title>TATA MASSAGE | Сторінку не знайдено (404)</title>
+    
+    <link rel="icon" type="image/svg+xml" href="images/logo-tata-massage.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-teal: #24B5C5;
+            --dark-teal: #198C9B;
+            --warm-bg: #FAFBFB;
+            --text-dark: #1F2223;
+            --text-muted: #5F6466;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--warm-bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .error-card {
+            background: #ffffff;
+            border: 1px solid rgba(36, 181, 197, 0.15);
+            padding: 50px 30px;
+            border-radius: 24px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            width: 56px;
+            height: 56px;
+        }
+
+        .error-code {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--primary-teal);
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .error-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .redirect-notice {
+            font-size: 13px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            background: #EAF2F4;
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2AABEE, #229ED9);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 32px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(34, 158, 217, 0.35);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 158, 217, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-card">
+        <img src="images/logo-tata-massage.svg" alt="TATA MASSAGE" class="logo-img">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Сторінку не знайдено</h1>
+        <p class="error-desc">Схоже, цієї сторінки більше не існує або посилання містить помилку. Не хвилюйтесь, ми повернемо вас на сайт!</p>
+        
+        <div class="redirect-notice">
+            Автоматичний перехід на головну через <span id="timer">3</span> сек...
+        </div>
+
+        <a href="/" class="home-btn">Перейти на головну зараз</a>
+    </div>
+
+    <script>
+        // Таймер обратного отсчета с плавным переходом
+        let seconds = 3;
+        const timerElement = document.getElementById('timer');
+        const countdown = setInterval(() => {
+            seconds--;
+            if (timerElement) timerElement.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.replace('/');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
