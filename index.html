@@ -588,14 +588,18 @@
     .price-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 50px;
+        gap: 40px;
     }
 
     .price-category {
         background-color: var(--card-bg);
-        padding: 45px 35px;
+        padding: 40px 32px;
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        border: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .price-table {
@@ -608,46 +612,28 @@
         font-size: 20px;
         font-weight: 700;
         color: var(--primary-teal);
-        padding-bottom: 22px;
+        padding-bottom: 20px;
         border-bottom: 2px solid rgba(36, 181, 197, 0.2);
-        vertical-align: top; /* Суворе вертикальне вирівнювання по верхньому краю */
+        vertical-align: middle;
     }
 
     .price-table th:first-child {
         text-align: left;
-        width: 50%;
+        width: 65%;
     }
 
     .price-table th:nth-child(2) {
         text-align: right;
-        width: 25%;
+        width: 35%;
         font-size: 13px;
         text-transform: uppercase;
         font-weight: 600;
         color: var(--text-muted);
-    }
-
-    .price-table th:nth-child(3) {
-        text-align: right;
-        width: 25%;
-        font-size: 13px;
-        text-transform: uppercase;
-        font-weight: 600;
-        color: var(--accent-gold);
-    }
-
-    /* Підрядковий текст для (10 сеансів) на другому рядку */
-    .th-sub {
-        display: block;
-        font-size: 10px; /* Суворо 10px для рівної лінії заголовків на мобільних */
-        font-weight: 600; 
-        text-transform: uppercase; 
-        margin-top: 3px;
-        color: inherit; 
+        letter-spacing: 0.5px;
     }
 
     .price-table td {
-        padding: 24px 0;
+        padding: 20px 0;
         border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
     }
 
@@ -659,6 +645,7 @@
         font-size: 15px;
         font-weight: 600;
         color: var(--text-dark);
+        display: block;
     }
 
     .price-time {
@@ -666,21 +653,81 @@
         font-size: 12px;
         color: var(--text-muted);
         font-weight: 400;
-        margin-top: 5px;
+        margin-top: 4px;
     }
 
     .val {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 700;
         color: var(--text-dark);
         text-align: right;
+        white-space: nowrap;
     }
 
-    .val-discount {
-        font-size: 16px;
-        font-weight: 700;
+    /* Блок знижки на курс та сертифікатів у картці прайсу */
+    .price-card-footer {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 2px dashed rgba(36, 181, 197, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .price-discount-line {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(36, 181, 197, 0.08);
+        border: 1px solid rgba(36, 181, 197, 0.22);
+        padding: 10px 14px;
+        border-radius: 12px;
+    }
+
+    .discount-tag {
+        background: var(--dark-teal);
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    .discount-text {
+        font-size: 14px;
+        color: var(--text-dark);
+        font-weight: 600;
+    }
+
+    .discount-text strong {
+        color: var(--dark-teal);
+    }
+
+    .price-cert-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-muted);
+        padding: 4px 6px;
+        font-weight: 500;
+    }
+
+    .price-cert-line a {
         color: var(--primary-teal);
-        text-align: right;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+
+    .price-cert-line a:hover {
+        color: var(--dark-teal);
+    }
+
+    .cert-icon {
+        font-size: 16px;
+        line-height: 1;
     }
 
     .price-cta {
@@ -924,7 +971,8 @@
     .contacts-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
+        align-items: stretch;
     }
 
     .contacts-intro {
@@ -1026,28 +1074,31 @@
     .map-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        height: 100%;
     }
 
-    /* Контейнер карти: СТРОГО фіксована висота height: 350px (CLS = 0) */
+    /* Контейнер інформаційного блоку локації (адаптивний, без обрізання контенту) */
     .map-container {
         border-radius: 24px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.035);
-        height: 350px;
         background-color: #fff;
         border: 1px solid var(--border-color);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Інформаційна картка вибору локації у Вінниці */
     .location-select-card {
-        height: 350px;
-        padding: 32px 30px;
+        flex: 1;
+        padding: 30px 28px;
         background: linear-gradient(145deg, #ffffff 0%, #eaf5f7 100%);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         box-sizing: border-box;
+        gap: 16px;
     }
 
     .location-badge {
@@ -1061,59 +1112,67 @@
         letter-spacing: 0.8px;
         padding: 5px 14px;
         border-radius: 20px;
+        margin-bottom: 6px;
     }
 
     .location-title {
         font-size: 20px;
         color: var(--text-dark);
-        margin: 4px 0 2px 0;
+        margin: 0 0 4px 0;
         font-weight: 700;
+        line-height: 1.3;
     }
 
     .location-desc {
         font-size: 13px;
         color: var(--text-muted);
         line-height: 1.5;
+        margin-bottom: 4px;
     }
 
     .location-list {
         list-style: none;
-        margin: 4px 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 7px;
+        gap: 8px;
     }
 
     .location-list li {
         font-size: 13px;
         color: var(--text-dark);
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 8px;
+        line-height: 1.4;
     }
 
     .location-check {
         color: var(--primary-teal);
         font-weight: 800;
         font-size: 14px;
+        flex-shrink: 0;
+        line-height: 1.4;
     }
 
     .location-action {
-        margin-top: 4px;
+        margin-top: 6px;
+        padding-top: 4px;
     }
 
     .location-btn {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         color: var(--primary-teal);
         background: rgba(36, 181, 197, 0.1);
         border: 1px solid rgba(36, 181, 197, 0.3);
-        padding: 8px 18px;
+        padding: 10px 20px;
         border-radius: 30px;
         transition: var(--transition);
+        line-height: 1.2;
     }
 
     .location-btn:hover {
@@ -1313,8 +1372,19 @@
             font-size: 18px;
         }
 
+        .price-category {
+            padding: 30px 20px;
+        }
+
+        .map-container {
+            height: auto;
+        }
+
         .location-select-card {
-            padding: 22px 20px;
+            height: auto;
+            min-height: auto;
+            padding: 24px 20px;
+            gap: 16px;
         }
 
         .location-title {
@@ -1485,18 +1555,16 @@
                             <thead>
                                 <tr>
                                     <th>Класичний масаж</th>
-                                    <th>Разово</th>
-                                    <th>Курс<br><span class="th-sub">(10 сеансів)</span></th>
+                                    <th>Разова процедура</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
                                         <span class="price-name">Загальний масаж тіла</span>
-                                        <span class="price-time">80 хвилин</span>
+                                        <span class="price-time">90 хвилин</span>
                                     </td>
-                                    <td class="val">800 ₴</td>
-                                    <td class="val-discount">7200 ₴</td>
+                                    <td class="val">900 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -1504,23 +1572,20 @@
                                         <span class="price-time">25 хвилин</span>
                                     </td>
                                     <td class="val">400 ₴</td>
-                                    <td class="val-discount">3600 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="price-name">Спина + ШКЗ + руки</span>
-                                        <span class="price-time">40 хвилин</span>
+                                        <span class="price-time">50 хвилин</span>
                                     </td>
                                     <td class="val">600 ₴</td>
-                                    <td class="val-discount">5400 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="price-name">Масаж ніг та стоп</span>
-                                        <span class="price-time">30 хвилин</span>
+                                        <span class="price-time">35 хвилин</span>
                                     </td>
                                     <td class="val">500 ₴</td>
-                                    <td class="val-discount">4500 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -1528,10 +1593,19 @@
                                         <span class="price-time">20 хвилин</span>
                                     </td>
                                     <td class="val">400 ₴</td>
-                                    <td class="val-discount">—</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="price-card-footer">
+                            <div class="price-discount-line">
+                                <span class="discount-tag">-10%</span>
+                                <span class="discount-text">на курс <strong>від 5 сеансів</strong></span>
+                            </div>
+                            <div class="price-cert-line">
+                                <span class="cert-icon">🎁</span>
+                                <span>У наявності є <a href="#certificates">подарункові сертифікати</a></span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Категорія: Додатково -->
@@ -1540,61 +1614,57 @@
                             <thead>
                                 <tr>
                                     <th>Додаткові процедури</th>
-                                    <th>Разово</th>
-                                    <th>Курс<br><span class="th-sub">(10 сеансів)</span></th>
+                                    <th>Разова процедура</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
                                         <span class="price-name">Антицелюлітний масаж</span>
-                                        <span class="price-time">60 хвилин</span>
+                                        <span class="price-time">70 хвилин</span>
                                     </td>
-                                    <td class="val">800 ₴</td>
-                                    <td class="val-discount">7200 ₴</td>
+                                    <td class="val">900 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="price-name">Антицелюлітний медовий</span>
-                                        <span class="price-time">50 хвилин</span>
+                                        <span class="price-time">60 хвилин</span>
                                     </td>
-                                    <td class="val">800 ₴</td>
-                                    <td class="val-discount">7200 ₴</td>
+                                    <td class="val">900 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="price-name">Антицелюлітний (живіт + боки)</span>
-                                        <span class="price-time">40 хвилин</span>
-                                    </td>
-                                    <td class="val">350 ₴</td>
-                                    <td class="val-discount">3150 ₴</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="price-name">Обличчя + декольте (ручний + гуаша)</span>
-                                        <span class="price-time">50 хвилин</span>
+                                        <span class="price-name">Масаж обличчя, декольте, голови</span>
+                                        <span class="price-time">ручний + гуаша • 50 хвилин</span>
                                     </td>
                                     <td class="val">600 ₴</td>
-                                    <td class="val-discount">5400 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="price-name">Загальний дитячий (від 7 років)</span>
+                                        <span class="price-name">Загальний дитячий (з 7 років)</span>
                                         <span class="price-time">40 хвилин</span>
                                     </td>
                                     <td class="val">500 ₴</td>
-                                    <td class="val-discount">4500 ₴</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="price-name">Дитячий масаж спини (від 7 років)</span>
+                                        <span class="price-name">Дитячий масаж спини (з 7 років)</span>
                                         <span class="price-time">25 хвилин</span>
                                     </td>
                                     <td class="val">300 ₴</td>
-                                    <td class="val-discount">2700 ₴</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="price-card-footer">
+                            <div class="price-discount-line">
+                                <span class="discount-tag">-10%</span>
+                                <span class="discount-text">на курс <strong>від 5 сеансів</strong></span>
+                            </div>
+                            <div class="price-cert-line">
+                                <span class="cert-icon">🎁</span>
+                                <span>У наявності є <a href="#certificates">подарункові сертифікати</a></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1613,7 +1683,7 @@
                     <div class="gift-text">
                         <h3 class="gift-subtitle">🎁 Найкращий подарунок — це турбота про здоров'я</h3>
                         <p>Бажаєте зробити дійсно корисний та приємний сюрприз близькій людині? Подарунковий сертифікат на професійний масаж у Вінниці — це ідеальне рішення до будь-якого свята чи пам'ятної події.</p>
-                        <p>Ви можете попередньо замовити сертифікат на будь-яку окрему процедуру (наприклад, розслабляючий масаж тіла чи моделюючий масаж обличчя гуаша) або оформити повноцінний курс із 10 сеансів. Сертифікат почне діяти одразу після відкриття кабінету!</p>
+                        <p>Ви можете замовити сертифікат на будь-яку окрему процедуру (наприклад, розслабляючий масаж тіла чи масаж обличчя, декольте та голови) або оформити курс від 5 сеансів зі знижкою -10%. Сертифікат почне діяти одразу після відкриття кабінету!</p>
                         <a href="https://t.me/+380671099469" target="_blank" class="telegram-btn cert-btn">Замовити сертифікат</a>
                     </div>
                     <div class="gift-img">
@@ -1728,7 +1798,7 @@
                     <div class="faq-item">
                         <button class="faq-question">Скільки сеансів потрібно пройти для видимого ефекту?</button>
                         <div class="faq-answer">
-                            <p>Для зняття гострої втоми та приємного розслаблення відчутний ефект є вже після першого сеансу. Проте для досягнення стійкого оздоровчого, лімфодренажного чи антицелюлітного результату рекомендується курс із 10 сеансів (діє знижка 10% на абонемент).</p>
+                            <p>Для зняття гострої втоми та приємного розслаблення відчутний ефект є вже після першого сеансу. Проте для досягнення стійкого оздоровчого, лімфодренажного чи антицелюлітного результату рекомендується курс від 5 сеансів (діє вигідна знижка -10% на абонемент).</p>
                         </div>
                     </div>
 
