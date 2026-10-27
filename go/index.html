@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TATA MASSAGE | Перенаправлення...</title>
     
-    <!-- Подключение Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/logo-tata-massages.svg">
+    <!-- Подключение Favicon (исправлено на logo-tata-massage.svg) -->
+    <link rel="icon" type="image/svg+xml" href="../images/logo-tata-massage.svg">
 
     <!-- Google Tag Manager (ID сохранен) -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -97,8 +97,8 @@
                 telegram: 'https://t.me/+380671099469'
             };
 
-            // Если параметр "to" указан неверно или отсутствует, ведем на главный сайт
-            const targetUrl = socialDestinations[to] || 'https://www.tatamassage.pp.ua/';
+            // Если параметр "to" указан неверно или отсутствует, ведем на главный сайт (строго без www)
+            const targetUrl = socialDestinations[to] || 'https://tatamassage.pp.ua/';
 
             // Локализация текста перенаправления
             const cleanName = to ? to.charAt(0).toUpperCase() + to.slice(1) : 'TATA MASSAGE';
