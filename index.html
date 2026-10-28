@@ -45,6 +45,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- Preconnect до GTM: лише встановлює з'єднання (не завантажує скрипт),
+         щоб перший реальний контакт (клік/скрол) спрацював без затримки DNS+TLS -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
     <!-- Попереднє завантаження LCP-зображення (фонового банера) з найвищим пріоритетом -->
     <link rel="preload" as="image" href="images/hero-bg-spa.webp" type="image/webp" fetchpriority="high">
 
