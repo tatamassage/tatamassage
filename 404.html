@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <!-- Резервный авторедирект через 3 секунды, если в браузере отключен JS -->
-    <meta http-equiv="refresh" content="3; url=/">
     
     <title>TATA MASSAGE | Сторінку не знайдено (404)</title>
     
-    <link rel="icon" type="image/svg+xml" href="images/logo-tata-massage.svg">
+    <link rel="icon" type="image/svg+xml" href="/images/logo-tata-massage.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
@@ -81,15 +79,6 @@
             line-height: 1.6;
         }
 
-        .redirect-notice {
-            font-size: 13px;
-            color: var(--primary-teal);
-            font-weight: 600;
-            background: #EAF2F4;
-            padding: 8px 16px;
-            border-radius: 50px;
-        }
-
         .home-btn {
             display: inline-flex;
             align-items: center;
@@ -117,30 +106,13 @@
 <body>
 
     <div class="error-card">
-        <img src="images/logo-tata-massage.svg" alt="TATA MASSAGE" class="logo-img">
+        <img src="/images/logo-tata-massage.svg" alt="TATA MASSAGE" class="logo-img" width="56" height="56">
         <div class="error-code">404</div>
         <h1 class="error-title">Сторінку не знайдено</h1>
-        <p class="error-desc">Схоже, цієї сторінки більше не існує або посилання містить помилку. Не хвилюйтесь, ми повернемо вас на сайт!</p>
+        <p class="error-desc">Схоже, цієї сторінки більше не існує або посилання містить помилку. Скористайтеся кнопкою нижче, щоб повернутися на головну сторінку сайту.</p>
         
-        <div class="redirect-notice">
-            Автоматичний перехід на головну через <span id="timer">3</span> сек...
-        </div>
-
-        <a href="/" class="home-btn">Перейти на головну зараз</a>
+        <a href="/" class="home-btn">Повернутися на головну</a>
     </div>
 
-    <script>
-        // Таймер обратного отсчета с плавным переходом
-        let seconds = 3;
-        const timerElement = document.getElementById('timer');
-        const countdown = setInterval(() => {
-            seconds--;
-            if (timerElement) timerElement.textContent = seconds;
-            if (seconds <= 0) {
-                clearInterval(countdown);
-                window.location.replace('/');
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
